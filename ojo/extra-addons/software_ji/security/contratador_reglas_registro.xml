@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- REGLAS DE REGISTRO -->
+    <record model="ir.rule" id="contratador_por_operario">
+        <field name="name">Programador solo accede a las tareas.</field>
+        <field name="model_id" ref="model_software_ji_contratador"></field>
+        <field name="domain_force">[('usuario','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref(''))]"></field>
+    </record>
+
+
+</odoo>

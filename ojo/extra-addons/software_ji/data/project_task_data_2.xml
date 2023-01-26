@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo noupdate="1">
+
+    <!-- Project tags -->
+    <record id="project_stage_idea" model="project.task.type">
+        <field name="name">Idea</field>
+    </record>
+    
+</odoo>

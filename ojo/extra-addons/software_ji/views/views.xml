@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="software_ji.contratador_tree">
+      <field name="name">software_ji.contratador.tree</field>
+      <field name="model">software_ji.contratador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="empresa"/>
+          <field name="description"/>
+          <field name="horas"/>
+          <field name="pago_por_hora"/>
+          <field name="pago_total"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_ji.contratador_form">
+      <field name="name">software_ji.contratador.form</field>
+      <field name="model">software_ji.contratador</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="empresa"/>
+            <field name="description"/>
+            <field name="horas"/>
+            <field name="pago_por_hora"/>
+            <field name="pago_total" groups="software_ji.grupo_operario"/>
+            <field name="proyectos">
+              <tree>
+                <field name="name"/>
+                <field name="user_id"/>
+              </tree>
+            </field>      
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista heredada de proyecto -->
+
+    <record id="project_project_inherit" model="ir.ui.view">
+      <field name="name">project.project.inherit</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.edit_project"/> 
+      <field name="arch" type="xml">
+        <field name="partner_id" position="after">
+          <field name="empresas"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="software_ji.contratador_action_window">
+      <field name="name">software_ji.contratador</field>
+      <field name="res_model">software_ji.contratador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="software_ji.action_server">
+      <field name="name">softwareJI server</field>
+      <field name="model_id" ref="model_software_ji_software_ji"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Contratador" id="software_ji.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Contratador" id="software_ji.contratador_menu" 
+              parent="software_ji.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Contratador" id="software_ji.software_ji_menu_contratador" 
+              parent="software_ji.contratador_menu" action="software_ji.contratador_action_window"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- REGLAS DE REGISTRO -->
+    <record model="ir.rule" id="incidencia_por_operario">
+        <field name="name">Usuario operario solo accede a sus incidencias</field>
+        <field name="model_id" ref="model_incidencias_incidencias"></field>
+        <field name="domain_force">[('usuario','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('grupo_operario'))]"/>
+    </record>
+
+</odoo>

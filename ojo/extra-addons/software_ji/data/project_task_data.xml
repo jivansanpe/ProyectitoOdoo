@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo noupdate="1">
+
+    <!-- Project tags -->
+    <record id="project_category_importante" model="project.tags">
+        <field name="name">Importante</field>
+    </record>
+    
+</odoo>

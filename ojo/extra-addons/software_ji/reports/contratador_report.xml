@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <data>
+
+        <record model="ir.actions.report" id="software_ji.contratador_report">
+            <field name="name">Reporte Contratador</field>
+            <field name="model">software_ji.contratador</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">software_ji.contratador_report_template</field>
+            <field name="report_file">software_ji.contratador_report_template</field>
+            <field name="binding_model_id" ref="software_ji.model_software_ji_contratador"></field>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
