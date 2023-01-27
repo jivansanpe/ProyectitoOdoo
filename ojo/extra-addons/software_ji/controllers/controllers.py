@@ -49,7 +49,7 @@ class SoftwareJi(http.Controller):
         data = {'status': 200, 'response': val, 'message': 'Success'}
         return data
     
-    @http.route('/api/contratador/findByBrand', type="json", auth="public", csrf=True, cors='*')
+    @http.route('/api/contratador/findByEmpresa', type="json", auth="public", csrf=True, cors='*')
     def findByEmpresa(self, **kw):
         data = kw["data"]
         reg_exp = '%' + data['empresa'] + '%'
