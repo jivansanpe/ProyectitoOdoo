@@ -26,7 +26,7 @@ function App() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/app/contratador" className="navbar-brand">
           <div className="contratador-logo" >
-            <img src="/app/contratador-logo.jpg" alt="Contratador" />
+            <img src="/app/bicycle-logo.jpg" alt="Contratador" />
           </div>
         </a>
         <div className="navbar-nav mr-auto">
