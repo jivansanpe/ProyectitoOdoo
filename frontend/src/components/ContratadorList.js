@@ -50,7 +50,7 @@ const ContratadorList = () => {
 
   const findByEmpresa = () => {
 
-    if(searchEmpresa === '') {
+    if (searchEmpresa === '') {
       refreshList();
       return;
     }
@@ -71,7 +71,7 @@ const ContratadorList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by empresa"
+            placeholder="Busca por nombre de empresa"
             value={searchEmpresa}
             onChange={onChangeSearchEmpresa}
           />
@@ -81,7 +81,7 @@ const ContratadorList = () => {
               type="button"
               onClick={findByEmpresa}
             >
-              Search
+              Buscar
             </button>
           </div>
         </div>
@@ -108,13 +108,19 @@ const ContratadorList = () => {
           className="m-3 btn btn-sm btn-danger"
           onClick={removeAllContratador}
         >
-          Remove All
+          Limpiar todo
         </button>
       </div>
       <div className="col-md-6">
         {currentContratador ? (
           <div>
             <h4>Contratador</h4>
+            <div>
+              <label>
+                <strong>Número de contrato:</strong>
+              </label>{" "}
+              {currentContratador.name}
+            </div>
             <div>
               <label>
                 <strong>Empresa:</strong>
@@ -127,18 +133,29 @@ const ContratadorList = () => {
               </label>{" "}
               {currentContratador.description}
             </div>
-
+            <div>
+              <label>
+                <strong>Horas:</strong>
+              </label>{" "}
+              {currentContratador.horas}
+            </div>
+            <div>
+              <label>
+                <strong>Pago por hora:</strong>
+              </label>{" "}
+              {currentContratador.pago_por_hora}
+            </div>
             <Link
               to={"/app/contratador/" + currentContratador.id}
               className="badge badge-warning"
             >
-              Edit
+              Editar
             </Link>
           </div>
         ) : (
           <div>
             <br />
-            <p>Please click on a Contratador...</p>
+            <p>Por favor, haz click en un contrato...</p>
           </div>
         )}
       </div>

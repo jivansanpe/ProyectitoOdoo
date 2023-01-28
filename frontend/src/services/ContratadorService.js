@@ -81,7 +81,10 @@ const create = data => {
     "params": {
       "data": {
         "empresa": data.empresa,
-        "description": data.description
+        "name": data.name,
+        "description": data.description,
+        "horas": data.horas,
+        "pago_por_hora": data.pago_por_hora
       }
     }
   });
@@ -107,7 +110,10 @@ const update = (id, data) => {
     "params": {
       "data": {
         "empresa": data.empresa,
-        "description": data.description
+        "name": data.name,
+        "description": data.description,
+        "horas": data.horas,
+        "pago_por_hora": data.pago_por_hora
       }
     }
   });

@@ -21,7 +21,6 @@
 from odoo import http
 from odoo.http import request
 
-
 class SoftwareJi(http.Controller):
 
     @http.route('/api/contratador/getAll', type="json", auth="public", csrf=True, cors='*')
@@ -31,8 +30,11 @@ class SoftwareJi(http.Controller):
         for rec in contratador_rec:
             vals = {
                 'id': rec.id,
+                'name': rec.name,
                 'empresa': rec.empresa,
-                'description': rec.description
+                'pago_por_hora':rec.pago_por_hora,
+                'horas':rec.horas,
+                'description':rec.description
             }
             contratador.append(vals)
         return {'status': 200, 'response': contratador, 'message': 'Success'}
@@ -43,8 +45,11 @@ class SoftwareJi(http.Controller):
         rec = model_to_get.browse(rec_id).sudo().ensure_one()
         val = {
             'id': rec.id,
+            'name': rec.name,
             'empresa': rec.empresa,
-            'description': rec.description
+            'pago_por_hora':rec.pago_por_hora,
+            'horas':rec.horas,
+            'description':rec.description
         }
         data = {'status': 200, 'response': val, 'message': 'Success'}
         return data
@@ -58,8 +63,11 @@ class SoftwareJi(http.Controller):
         for rec in contratador_rec:
             vals = {
                 'id': rec.id,
+                'name': rec.name,
                 'empresa': rec.empresa,
-                'description': rec.description
+                'pago_por_hora':rec.pago_por_hora,
+                'horas':rec.horas,
+                'description':rec.description
             }
             contratador.append(vals)
         return {'status': 200, 'response': contratador, 'message': 'Success'}

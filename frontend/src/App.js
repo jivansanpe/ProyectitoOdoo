@@ -26,7 +26,7 @@ function App() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/app/contratador" className="navbar-brand">
           <div className="contratador-logo" >
-            <img src="/app/bicycle-logo.jpg" alt="Contratador" />
+            <img src="/app/logo.png" alt="Contratador" />
           </div>
         </a>
         <div className="navbar-nav mr-auto">
@@ -37,7 +37,7 @@ function App() {
           </li>
           <li className="nav-item">
             <Link to={"/app/add"} className="nav-link">
-              Add
+              Crear
             </Link>
           </li>
         </div>
