@@ -87,7 +87,7 @@ const ContratadorList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Contratador List</h4>
+        <h4>Lista de contratos</h4>
 
         <ul className="list-group">
           {contratador &&
