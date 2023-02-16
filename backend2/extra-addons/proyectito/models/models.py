@@ -79,6 +79,22 @@ class ProjectKanban(models.Model):
 
         return project
 
+class CustomProjectTaskType(models.Model):
+    _inherit = 'project.task'
+
+    kanban_state = fields.Selection([
+        ('normal', 'En progreso'),
+        ('done', 'Preparado'),
+        ('blocked', 'Bloqueada'),
+        ('unassigned', 'Sin asignar'),
+        ('overdue','Atrasada')
+    ], 
+    string='Kanban State', 
+    default='normal',
+    required=True)
+
+
+
 
 # class proyectito(models.Model):
 #     _name = 'proyectito.proyectito'
