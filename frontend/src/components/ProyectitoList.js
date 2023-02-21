@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
-import ContratadorDataService from "../services/ContratadorService";
+import ProyectitoDataService from "../services/ProyectitoService";
 import { Link } from "react-router-dom";
 
-const ContratadorList = () => {
-  const [contratador, setContratador] = useState([]);
-  const [currentContratador, setCurrentContratador] = useState(null);
+const ProyectitoList = () => {
+  const [proyectito, setProyectito] = useState([]);
+  const [currentProyectito, setCurrentProyectito] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [searchEmpresa, setSearchEmpresa] = useState("");
+  const [searchProyectito, setSearchProyectito] = useState("");
 
   useEffect(() => {
-    retrieveContratador();
+    retrieveProyectito();
   }, []);
 
-  const onChangeSearchEmpresa = e => {
-    const searchEmpresa = e.target.value;
-    setSearchEmpresa(searchEmpresa);
+  const onChangeSearchProyectito = e => {
+    const searchProyectito = e.target.value;
+    setSearchProyectito(searchProyectito);
   };
 
-  const retrieveContratador = () => {
-    ContratadorDataService.getAll()
+  const retrieveProyectito = () => {
+    ProyectitoDataService.getAll()
       .then(response => {
-        setContratador(response.data.result.response);
+        setProyectito(response.data.result.response);
       })
       .catch(e => {
         console.log(e);
@@ -28,18 +28,18 @@ const ContratadorList = () => {
   };
 
   const refreshList = () => {
-    retrieveContratador();
-    setCurrentContratador(null);
+    retrieveProyectito();
+    setCurrentProyectito(null);
     setCurrentIndex(-1);
   };
 
-  const setActiveContratador = (contratador, index) => {
-    setCurrentContratador(contratador);
+  const setActiveProyectito = (proyectito, index) => {
+    setCurrentProyectito(proyectito);
     setCurrentIndex(index);
   };
 
-  const removeAllContratador = () => {
-    ContratadorDataService.removeAll()
+  const removeAllProyectito = () => {
+    ProyectitoDataService.removeAll()
       .then(response => {
         refreshList();
       })
@@ -48,16 +48,16 @@ const ContratadorList = () => {
       });
   };
 
-  const findByEmpresa = () => {
+  const findByProyectito = () => {
 
-    if (searchEmpresa === '') {
+    if (searchProyectito === '') {
       refreshList();
       return;
     }
 
-    ContratadorDataService.findByEmpresa(searchEmpresa)
+    ProyectitoDataService.findByProyectito(searchProyectito)
       .then(response => {
-        setContratador(response.data.result.response);
+        setProyectito(response.data.result.response);
       })
       .catch(e => {
         console.log(e);
@@ -71,15 +71,15 @@ const ContratadorList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Busca por nombre de empresa"
-            value={searchEmpresa}
-            onChange={onChangeSearchEmpresa}
+            placeholder="Introduce el nombre de una tarea"
+            value={searchProyectito}
+            onChange={onChangeSearchProyectito}
           />
           <div className="input-group-append">
             <button
               className="btn btn-outline-secondary"
               type="button"
-              onClick={findByEmpresa}
+              onClick={findByProyectito}
             >
               Buscar
             </button>
@@ -87,66 +87,68 @@ const ContratadorList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Lista de contratos</h4>
+        <h4>Tareas</h4>
 
         <ul className="list-group">
-          {contratador &&
-            contratador.map((contratador, index) => (
+          {proyectito &&
+            proyectito.map((proyectito, index) => (
               <li
                 className={
                   "list-group-item " + (index === currentIndex ? "active" : "")
                 }
-                onClick={() => setActiveContratador(contratador, index)}
+                onClick={() => setActiveProyectito(proyectito, index)}
                 key={index}
               >
-                {contratador.empresa}
+                {proyectito.name}
               </li>
             ))}
         </ul>
 
         <button
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllContratador}
+          onClick={removeAllProyectito}
         >
-          Limpiar todo
+          Borrar todo
         </button>
       </div>
       <div className="col-md-6">
-        {currentContratador ? (
+        {currentProyectito ? (
           <div>
-            <h4>Contratador</h4>
+            <h4>Datos</h4>
             <div>
               <label>
-                <strong>Número de contrato:</strong>
+                <strong>Nombre:</strong>
               </label>{" "}
-              {currentContratador.name}
+              {currentProyectito.name}
             </div>
             <div>
               <label>
-                <strong>Empresa:</strong>
+                <strong>Proyecto asociado:</strong>
               </label>{" "}
-              {currentContratador.empresa}
+              {currentProyectito.proyecto}
             </div>
             <div>
               <label>
-                <strong>Description:</strong>
+                <strong>Encargado a:</strong>
               </label>{" "}
-              {currentContratador.description}
+              {currentProyectito.user}
             </div>
             <div>
               <label>
-                <strong>Horas:</strong>
+                <strong>Fase:</strong>
               </label>{" "}
-              {currentContratador.horas}
+              {currentProyectito.fase}
             </div>
             <div>
               <label>
-                <strong>Pago por hora:</strong>
+                <strong>Estado:</strong>
               </label>{" "}
-              {currentContratador.pago_por_hora}
+              {currentProyectito.estado}
             </div>
+
+
             <Link
-              to={"/app/contratador/" + currentContratador.id}
+              to={"/app/proyectito/" + currentProyectito.id}
               className="badge badge-warning"
             >
               Editar
@@ -155,7 +157,7 @@ const ContratadorList = () => {
         ) : (
           <div>
             <br />
-            <p>Por favor, haz click en un contrato...</p>
+            <p>Selecciona una tarea para ver más detalles...</p>
           </div>
         )}
       </div>
@@ -163,4 +165,4 @@ const ContratadorList = () => {
   );
 };
 
-export default ContratadorList;
+export default ProyectitoList;

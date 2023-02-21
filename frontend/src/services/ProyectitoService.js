@@ -15,7 +15,7 @@ const getAll = () => {
 
   const config = {
     method: 'POST',
-    url: '/api/contratador/getAll',
+    url: '/api/proyectito/getAll',
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -37,7 +37,7 @@ const get = id => {
 
   const config = {
     method: 'POST',
-    url: `/api/contratador/get/${id}`,
+    url: `/api/proyectito/get/${id}`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -48,21 +48,21 @@ const get = id => {
   return axios(config);
 };
 
-const findByEmpresa = empresa => {
+const findByProyectito = name => {
   const session_id = getSessionId();
 
   const data = JSON.stringify({
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "empresa": empresa
+        "name": name
       }
     }
   });
 
   const config = {
     method: 'POST',
-    url: `/api/contratador/findByEmpresa`,
+    url: `/api/proyectito/findByProyectito`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -80,18 +80,18 @@ const create = data => {
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "empresa": data.empresa,
-        "name": data.name,
-        "description": data.description,
-        "horas": data.horas,
-        "pago_por_hora": data.pago_por_hora
+        "name":data.name,
+        // "proyecto": data.project_id.name,
+        // "estado": data.stage_id.name,
+        // "asignada":data.user_id.name,
+        // 'tags':data.tag_ids, 
       }
     }
   });
 
   var config = {
     method: 'POST',
-    url: '/api/contratador/create',
+    url: '/api/proyectito/create',
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -109,18 +109,18 @@ const update = (id, data) => {
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "empresa": data.empresa,
-        "name": data.name,
-        "description": data.description,
-        "horas": data.horas,
-        "pago_por_hora": data.pago_por_hora
+        "name":data.name,
+        // "proyecto": data.project_id.name,
+        // "estado": data.stage_id.name,
+        // "asignada":data.user_id.name,
+        // 'tags':data.tag_ids, 
       }
     }
   });
 
   var config = {
     method: 'POST',
-    url: `/api/contratador/update/${id}`,
+    url: `/api/proyectito/update/${id}`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -142,7 +142,7 @@ const remove = id => {
 
   var config = {
     method: 'POST',
-    url: `/api/contratador/remove/${id}`,
+    url: `/api/proyectito/remove/${id}`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -164,7 +164,7 @@ const removeAll = () => {
 
   var config = {
     method: 'POST',
-    url: `/api/contratador/removeAll`,
+    url: `/api/proyectito/removeAll`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -198,15 +198,15 @@ const initSession = () => {
   return axios(config);
 };
 
-const ContratadorService = {
+const ProyectitoService = {
   getAll,
   get,
   create,
   update,
   remove,
   removeAll,
-  findByEmpresa,
+  findByProyectito,
   initSession
 };
 
-export default ContratadorService;
+export default ProyectitoService;

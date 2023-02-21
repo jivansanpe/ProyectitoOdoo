@@ -91,7 +91,30 @@ class CustomProjectTaskType(models.Model):
     ], 
     string='Kanban State', 
     default='normal',
-    required=True)
+    required=True,
+    tracking=True)
+
+    kanban_state_label = fields.Char(string='Etiqueta del estado del kanban', compute='_compute_kanban_state_label')
+    
+    @api.depends('kanban_state')
+    def _compute_kanban_state_label(self):
+        for task in self:
+            if task.kanban_state == 'normal':
+                task.kanban_state_label = 'En progreso'
+            elif task.kanban_state == 'done':
+                task.kanban_state_label = 'Preparado'
+            elif task.kanban_state == 'blocked':
+                task.kanban_state_label = 'Bloqueada'
+            elif task.kanban_state == 'unassigned':
+                task.kanban_state_label = 'Sin asignar'
+            elif task.kanban_state == 'overdue':
+                task.kanban_state_label = 'Atrasada'
+
+
+
+
+
+
 
 
 

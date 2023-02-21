@@ -3,18 +3,18 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddContratador from "./components/AddContratador";
-import Contratador from "./components/Contratador";
-import ContratadorList from "./components/ContratadorList";
+import AddProyectito from "./components/AddProyectito";
+import Proyectito from "./components/Proyectito";
+import ProyectitoList from "./components/ProyectitoList";
 
-import ContratadorService from "./services/ContratadorService";
+import ProyectitoService from "./services/ProyectitoService";
 
 function App() {
 
   useEffect(() => {
     let session_id = localStorage.getItem("session_id");
     if (!session_id) {
-      ContratadorService.initSession().then(response => {
+      ProyectitoService.initSession().then(response => {
         localStorage.setItem("session_id", response.data.result.session_id.toString())
       })
       return
@@ -24,20 +24,20 @@ function App() {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/app/contratador" className="navbar-brand">
+        <a href="/app/proyectos.png" className="navbar-brand">
           <div className="contratador-logo" >
-            <img src="/app/logo.png" alt="Contratador" />
+            <img src="/app/logo.png" alt="contratador" />
           </div>
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/app/contratador"} className="nav-link">
-              Contratador
+            <Link to={"/app/proyectito"} className="nav-link">
+              Tareas
             </Link>
           </li>
           <li className="nav-item">
             <Link to={"/app/add"} className="nav-link">
-              Crear
+              Añadir
             </Link>
           </li>
         </div>
@@ -45,10 +45,10 @@ function App() {
 
       <div className="container mt-3">
         <Routes>
-          <Route path="/app" element={<ContratadorList />} />
-          <Route path="/app/contratador" element={<ContratadorList />} />
-          <Route path="/app/add" element={<AddContratador />} />
-          <Route path="/app/contratador/:id" element={<Contratador />} />
+          <Route path="/app" element={<ProyectitoList />} />
+          <Route path="/app/proyectito" element={<ProyectitoList />} />
+          <Route path="/app/add" element={<AddProyectito />} />
+          <Route path="/app/proyectito/:id" element={<Proyectito/>} />
           <Route path="/" element={<Navigate to="/app" />} />
           <Route path="*" element={
             <div>
