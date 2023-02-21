@@ -11,13 +11,18 @@ const AddProyectito = () => {
     estado: ""
   };
 
+  const [proyectos, setProyectos] = useState([]);
   const [proyectito, setProyectito] = useState(initialProyectitoState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
     setProyectito({ ...proyectito, [name]: value });
-  };  
+  };
+
+  const handleEstadoChange = event => {
+    setProyectito({ ...proyectito, estado: event.target.value });
+  };
 
   const saveProyectito = () => {
     var data = {
@@ -71,18 +76,6 @@ const AddProyectito = () => {
               value={proyectito.name}
               onChange={handleInputChange}
               name="name"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="proyecto">Nombre del proyecto</label>
-            <input
-              type="text"
-              className="form-control"
-              id="proyecto"
-              required
-              value={proyectito.proyecto}
-              onChange={handleInputChange}
-              name="proyecto"
             />
           </div>
           <button onClick={saveProyectito} className="btn btn-success">

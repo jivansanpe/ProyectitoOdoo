@@ -81,10 +81,8 @@ const create = data => {
     "params": {
       "data": {
         "name":data.name,
-        // "proyecto": data.project_id.name,
-        // "estado": data.stage_id.name,
-        // "asignada":data.user_id.name,
-        // 'tags':data.tag_ids, 
+        'project_id': 1,
+        'user_id': 2
       }
     }
   });
@@ -110,10 +108,6 @@ const update = (id, data) => {
     "params": {
       "data": {
         "name":data.name,
-        // "proyecto": data.project_id.name,
-        // "estado": data.stage_id.name,
-        // "asignada":data.user_id.name,
-        // 'tags':data.tag_ids, 
       }
     }
   });

@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/app/proyectos.png" className="navbar-brand">
+      <nav className="navbar navbar-expand">
+        <a href="/app" className="navbar-brand">
           <div className="contratador-logo" >
             <img src="/app/logo.png" alt="contratador" />
           </div>
