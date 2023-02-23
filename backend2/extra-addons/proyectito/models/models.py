@@ -86,8 +86,8 @@ class CustomProjectTaskType(models.Model):
         ('normal', 'En progreso'),
         ('done', 'Preparado'),
         ('blocked', 'Bloqueada'),
-        ('unassigned', 'Sin asignar'),
-        ('overdue','Atrasada')
+        ('sin_asignar', 'Sin asignar'),
+        ('atrasada','Atrasada')
     ], 
     string='Kanban State', 
     default='normal',
@@ -105,9 +105,9 @@ class CustomProjectTaskType(models.Model):
                 task.kanban_state_label = 'Preparado'
             elif task.kanban_state == 'blocked':
                 task.kanban_state_label = 'Bloqueada'
-            elif task.kanban_state == 'unassigned':
+            elif task.kanban_state == 'sin_asignar':
                 task.kanban_state_label = 'Sin asignar'
-            elif task.kanban_state == 'overdue':
+            elif task.kanban_state == 'atrasada':
                 task.kanban_state_label = 'Atrasada'
 
 
